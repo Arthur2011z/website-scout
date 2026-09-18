@@ -1,9 +1,12 @@
 # Website Scout
 
-Ein lokales Grundgerüst, um Websites (z. B. von Handwerksbetrieben oder
+Ein lokales Werkzeug, um Websites (z. B. von Handwerksbetrieben oder
 Initiativen in Hamburg) aus einer festen Liste von Start-Quellen sowie
 optional über die automatische OpenStreetMap/Overpass-Suche abzurufen,
-mit einfachen Regeln zu bewerten und in einem HTML-Report darzustellen.
+regelbasiert zu prüfen und in einem verlinkten HTML-Report darzustellen.
+Vor dem Abruf wird `robots.txt` berücksichtigt. Der Scout bewertet unter
+anderem HTTPS, Statuscode, Antwortzeit, Seitentitel, mobile Viewport-Angabe,
+Impressum sowie Kontaktmöglichkeiten.
 
 **Wichtig:** Dies ist bewusst ein einfaches Grundgerüst. Über
 `overpass.enabled: true` in `config.yaml` steht bereits eine automatische
@@ -32,9 +35,9 @@ website-scout/
 │   └── scorer.py
 ├── database/                # SQLite-Anbindung zur Ablage der Ergebnisse
 │   └── db.py
-├── templates/                # Jinja2-Template für den HTML-Report
-│   └── report.html.j2
-├── output/                   # Generierte Reports (nicht versioniert)
+├── templates/                # Jinja2-Templates für Übersicht und Detailseiten
+│   ├── index.html.j2
+│   └── detail.html.j2
 └── tests/                     # pytest-Tests für alle Module
 ```
 
@@ -54,7 +57,8 @@ python3 main.py
 
 Dies lädt die Quellen aus `sources/seed_urls.yaml`, ruft sie ab, wertet
 sie mit den in `config.yaml` hinterlegten Gewichtungen aus, speichert die
-Ergebnisse in `database/website_scout.db` und erzeugt `output/report.html`.
+Ergebnisse in `database/website_scout.db` und erzeugt im Ausgabeordner eine
+`index.html`-Übersicht sowie eine eigene `website-*.html`-Detailseite pro Fund.
 
 Die mitgelieferte `sources/seed_urls.yaml` enthält nur Platzhalter-URLs
 (`*.example`) und muss vor echter Nutzung durch reale, geprüfte Quellen
