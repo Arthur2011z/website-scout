@@ -1,0 +1,10 @@
+# Beispielhafte Start-Quellen für den Website Scout.
+# Dies sind Platzhalter-URLs (.example) - bitte vor echter Nutzung
+# durch reale, geprüfte Quellen aus Hamburg ersetzen.
+sources:
+  - name: "Beispiel Handwerksbetrieb"
+    url: "https://handwerk-beispiel.example"
+    city: "Hamburg"
+  - name: "Beispiel Stadtteilinitiative"
+    url: "https://stadtteil-beispiel.example"
+    city: "Hamburg"

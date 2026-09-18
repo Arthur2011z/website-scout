@@ -1,0 +1,55 @@
+# Konfiguration für den Website Scout.
+# Neben der festen Liste von Start-Quellen (siehe sources/seed_urls.yaml)
+# kann über overpass.enabled=true zusätzlich automatisch über die
+# Overpass-API (OpenStreetMap) nach Unternehmen mit Website-URL im
+# konfigurierten Gebiet (aktuell Hamburg) gesucht werden.
+
+region:
+  city: "Hamburg"
+  country: "Deutschland"
+
+crawler:
+  # Wird bei jeder Anfrage als HTTP-Header mitgeschickt, damit Betreiber
+  # erkennen können, welcher Bot ihre Seite aufruft.
+  user_agent: "WebsiteScoutBot/0.1 (+kontakt: zukunftslabor@infinita-schule.de)"
+  # Mindestabstand zwischen zwei Anfragen in Sekunden (Rate-Limit).
+  rate_limit_seconds: 2.0
+  # Timeout pro HTTP-Anfrage in Sekunden.
+  timeout_seconds: 10
+  # Obergrenze, wie viele Seiten pro Domain zukünftig besucht werden dürfen.
+  max_pages_per_domain: 5
+
+scoring:
+  # Gewichtung einzelner Merkmale für die einfache Regel-basierte Bewertung.
+  weights:
+    has_title: 1.0
+    has_meta_description: 1.0
+    has_impressum: 2.0
+    has_text: 1.0
+    has_https: 1.0
+    status_ok: 1.0
+    has_viewport: 1.0
+    has_kontakt: 1.0
+    response_time_ok: 1.0
+  # Ab diesem Score gilt eine Website als grundsätzlich relevant.
+  min_score_relevant: 3.0
+
+database:
+  path: "database/website_scout.db"
+
+output:
+  directory: "output"
+
+overpass:
+  # Schalter: Wenn true, werden zusätzlich Unternehmen mit hinterlegter
+  # Website-URL über die Overpass-API (OpenStreetMap) für das unten
+  # angegebene Gebiet gesucht und als weitere Kandidaten in den bestehenden
+  # Ablauf (Abruf, Bewertung, Speicherung, Report) übernommen. Der bisherige
+  # Seed-URL-Modus (sources/seed_urls.yaml) bleibt davon unberührt und läuft
+  # immer zusätzlich.
+  enabled: true
+  # Name des Gebiets, wie es in OpenStreetMap als administrative Grenze
+  # hinterlegt ist (aktuell Hamburg).
+  area_name: "Hamburg"
+  # Obergrenze für die Anzahl an Treffern pro Overpass-Anfrage.
+  limit: 50

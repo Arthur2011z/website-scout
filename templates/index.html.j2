@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <title>Website Scout Report - {{ city }}</title>
+</head>
+<body>
+    <h1>Website Scout Report - {{ city }}</h1>
+    <p>Erstellt am {{ generated_at }}</p>
+    <table border="1" cellpadding="4" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>URL</th>
+                <th>Score</th>
+                <th>Status</th>
+                <th>Detailseite</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+            <tr>
+                <td>{{ entry.website.name }}</td>
+                <td><a href="{{ entry.website.final_url or entry.website.url }}">{{ entry.website.url }}</a></td>
+                <td>{{ "%.1f"|format(entry.website.score) }}</td>
+                <td>{{ entry.website.status_code if entry.website.status_code is not none else "-" }}</td>
+                <td><a href="{{ entry.detail_filename }}">Details</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

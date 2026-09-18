@@ -1,0 +1,68 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API (fixture for offline tests)",
+  "elements": [
+    {
+      "type": "node",
+      "id": 111,
+      "lat": 53.5511,
+      "lon": 9.9937,
+      "tags": {
+        "name": "Bäckerei Beispiel",
+        "shop": "bakery",
+        "website": "https://baeckerei-beispiel.example",
+        "addr:street": "Musterstraße",
+        "addr:housenumber": "1",
+        "addr:postcode": "20095",
+        "addr:city": "Hamburg"
+      }
+    },
+    {
+      "type": "way",
+      "id": 222,
+      "center": {"lat": 53.5503, "lon": 10.0006},
+      "tags": {
+        "name": "IT-Beratung Beispiel",
+        "office": "it",
+        "contact:website": "https://it-beratung-beispiel.example/",
+        "addr:city": "Hamburg"
+      }
+    },
+    {
+      "type": "node",
+      "id": 333,
+      "lat": 53.55,
+      "lon": 10.0,
+      "tags": {
+        "name": "Ohne Website GmbH",
+        "shop": "convenience",
+        "addr:street": "Nebenstraße",
+        "addr:housenumber": "5"
+      }
+    },
+    {
+      "type": "way",
+      "id": 444,
+      "center": {"lat": 53.552, "lon": 9.995},
+      "tags": {
+        "name": "Bäckerei Beispiel Filiale",
+        "shop": "bakery",
+        "website": "https://baeckerei-beispiel.example/",
+        "addr:street": "Filialstraße",
+        "addr:housenumber": "9",
+        "addr:postcode": "20099",
+        "addr:city": "Hamburg"
+      }
+    },
+    {
+      "type": "node",
+      "id": 555,
+      "lat": 53.549,
+      "lon": 9.998,
+      "tags": {
+        "craft": "carpenter",
+        "website": "https://tischlerei-beispiel.example"
+      }
+    }
+  ]
+}

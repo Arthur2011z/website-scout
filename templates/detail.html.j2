@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <title>{{ website.name or website.url }} - Website Scout Detail</title>
+</head>
+<body>
+    <p><a href="index.html">&larr; Zurück zur Übersicht</a></p>
+    <h1>{{ website.name or website.url }}</h1>
+    <dl>
+        <dt>URL</dt>
+        <dd><a href="{{ website.url }}">{{ website.url }}</a></dd>
+
+        <dt>Tatsächlich abgerufene URL (final_url)</dt>
+        <dd>{{ website.final_url if website.final_url else "-" }}</dd>
+
+        <dt>Score</dt>
+        <dd>{{ "%.1f"|format(website.score) }}</dd>
+
+        <dt>Statuscode</dt>
+        <dd>{{ website.status_code if website.status_code is not none else "-" }}</dd>
+
+        <dt>Antwortzeit</dt>
+        <dd>{{ "%.2fs"|format(website.response_time_seconds) if website.response_time_seconds is not none else "-" }}</dd>
+
+        <dt>HTTPS</dt>
+        <dd>{% if is_https %}Ja, über HTTPS erreichbar{% else %}Nein, nicht über HTTPS erreichbar{% endif %}</dd>
+    </dl>
+
+    <h2>Begründungen</h2>
+    <ul>
+        {% for explanation in website.explanations %}
+        <li>{{ explanation }}</li>
+        {% else %}
+        <li>Keine Begründungen vorhanden.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
