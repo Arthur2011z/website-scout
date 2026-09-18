@@ -63,7 +63,9 @@ def build_query(area_name: str = DEFAULT_AREA_NAME, limit: int = DEFAULT_LIMIT) 
 def _extract_category(tags: Dict[str, str]) -> str:
     for key in _BUSINESS_TAG_KEYS:
         if tags.get(key):
-            return tags[key]
+            # Für die grobe Anzeige genügt bei allen Office-Typen die
+            # einheitliche Kategorie „office“.
+            return "office" if key == "office" else tags[key]
     return ""
 
 

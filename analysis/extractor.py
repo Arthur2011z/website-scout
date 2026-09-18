@@ -72,11 +72,13 @@ def extract_page_info(html: str, url: str) -> PageInfo:
 
     links = [a.get("href") for a in soup.find_all("a", href=True)]
 
+    # Nur tatsächliche Links zählen: Ein Seitentitel wie „Ohne Impressum"
+    # darf nicht als vorhandenes Impressum gewertet werden.
     has_impressum = any(
         keyword in (link or "").lower()
         for link in links
         for keyword in IMPRESSUM_KEYWORDS
-    ) or any(keyword in title.lower() for keyword in IMPRESSUM_KEYWORDS)
+    )
 
     has_kontakt_link, emails, phones = _extract_contact_signals(soup, links)
 
